@@ -5,6 +5,7 @@ Chaveamento publico do campeonato Nova 2v2.
 - `index.html`: pagina publica somente leitura.
 - `admin.html`: pagina local para editar placares e baixar o `data.json`.
 - `data.json`: estado publicado do chaveamento.
+- `logo.png`: logo original da Nova usada no topo do site.
 
 ## Regras
 

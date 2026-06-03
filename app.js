@@ -250,7 +250,7 @@ function createMatch(context) {
   [0, 1].forEach((slot) => {
     const row = match.querySelector(slot === 0 ? ".team-a" : ".team-b");
     row.append(createTeamButton(context, teams[slot], winner, homeTeam));
-    row.append(createScoreControls(context, slot, teams[slot], score[slot]));
+    row.append(createScoreControls(context, slot, teams[slot], score[slot], winner));
   });
 
   return match;
@@ -463,9 +463,11 @@ function createTeamButton(context, team, winner, homeTeam) {
   return button;
 }
 
-function createScoreControls(context, slot, team, value) {
+function createScoreControls(context, slot, team, value, winner) {
   const controls = document.createElement("div");
   controls.className = "score-controls";
+  controls.classList.toggle("score-winner", Boolean(team && winner === team));
+  controls.classList.toggle("score-loser", Boolean(team && winner && winner !== team));
 
   if (!isAdmin) {
     const score = document.createElement("span");
