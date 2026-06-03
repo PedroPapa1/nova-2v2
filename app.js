@@ -5,47 +5,66 @@ const initialTeams = [
   "Brasil",
   "Argentina",
   "Alemanha",
-  "Italia",
+  "Itália",
   "Inglaterra",
-  "Franca",
+  "França",
   "Espanha",
   "Portugal",
   "Holanda",
   "Uruguai",
-  "Mexico",
-  "Belgica",
-  "Croacia",
+  "México",
+  "Bélgica",
+  "Croácia",
   "Marrocos",
   "Estados Unidos",
-  "Japao",
-  "Colombia",
+  "Japão",
+  "Colômbia",
   "Chile",
-  "Polonia",
+  "Polônia",
   "Dinamarca",
-  "Suica",
-  "Servia",
-  "Suecia",
+  "Suíça",
+  "Sérvia",
+  "Suécia",
   "Noruega",
   "Turquia",
   "Coreia do Sul",
-  "Camaroes",
-  "Nigeria",
+  "Camarões",
+  "Nigéria",
   "Egito",
-  "Canada",
-  "Australia",
-  "Republica Tcheca",
+  "Canadá",
+  "Austrália",
+  "República Tcheca",
 ];
 
 const sideRoundNames = ["Primeira Fase", "Oitavas", "Quartas", "Semifinais"];
 const sideMatchCounts = [8, 4, 2, 1];
 const sideBestOf = [1, 1, 3, 3];
 const sides = ["left", "right"];
+const accentMap = {
+  Italia: "Itália",
+  Franca: "França",
+  Mexico: "México",
+  Belgica: "Bélgica",
+  Croacia: "Croácia",
+  Japao: "Japão",
+  Colombia: "Colômbia",
+  Polonia: "Polônia",
+  Suica: "Suíça",
+  Servia: "Sérvia",
+  Suecia: "Suécia",
+  Camaroes: "Camarões",
+  Nigeria: "Nigéria",
+  Canada: "Canadá",
+  Australia: "Austrália",
+  "Republica Tcheca": "República Tcheca",
+};
 
 let state;
 
 const bracket = document.querySelector("#bracket");
 const championName = document.querySelector("#championName");
 const progressText = document.querySelector("#progressText");
+const championPanel = document.querySelector(".champion-panel");
 
 boot();
 
@@ -67,7 +86,7 @@ function bindAdminActions() {
   });
 
   document.querySelector("#shuffleButton").addEventListener("click", () => {
-    const confirmed = window.confirm("Embaralhar as selecoes e zerar o chaveamento?");
+    const confirmed = window.confirm("Embaralhar as seleções e zerar o chaveamento?");
     if (!confirmed) return;
     state = createState(shuffle([...initialTeams]));
     saveState();
@@ -89,7 +108,7 @@ function bindAdminActions() {
       saveState();
       render();
     } catch (error) {
-      window.alert("Arquivo invalido para este chaveamento.");
+      window.alert("Arquivo inválido para este chaveamento.");
     } finally {
       event.target.value = "";
     }
@@ -116,10 +135,25 @@ function readSavedState() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
     validateState(saved);
-    return saved;
+    return normalizeState(saved);
   } catch (error) {
     return null;
   }
+}
+
+function normalizeState(value) {
+  value.leftTeams = value.leftTeams.map(normalizeTeamName);
+  value.rightTeams = value.rightTeams.map(normalizeTeamName);
+  sides.forEach((side) => {
+    value.sides[side].winners = value.sides[side].winners.map((round) => round.map(normalizeTeamName));
+  });
+  value.final.winner = normalizeTeamName(value.final.winner);
+  return value;
+}
+
+function normalizeTeamName(team) {
+  if (!team) return team;
+  return accentMap[team] || team;
 }
 
 function createState(teams) {
@@ -183,6 +217,7 @@ function render() {
 
   const champion = state.final.winner;
   championName.textContent = champion || "Aguardando final";
+  championPanel.classList.toggle("has-champion", Boolean(champion));
   const decided = sides.reduce((total, side) => total + state.sides[side].winners.flat().filter(Boolean).length, 0);
   const finalDecided = state.final.winner ? 1 : 0;
   progressText.textContent = `${decided + finalDecided} de 31 partidas definidas`;

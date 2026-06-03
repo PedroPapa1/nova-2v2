@@ -185,6 +185,15 @@ main {
     linear-gradient(90deg, rgba(255, 255, 255, 0.09), transparent 48%, rgba(255, 255, 255, 0.04)),
     rgba(17, 17, 17, 0.88);
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: height 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.champion-panel.has-champion {
+  height: 116px;
+  border-color: var(--green);
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.12), transparent 48%, rgba(255, 255, 255, 0.07)),
+    rgba(17, 17, 17, 0.94);
 }
 
 .champion-main {
@@ -198,6 +207,13 @@ main {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  transition: color 180ms ease, font-size 180ms ease;
+}
+
+.champion-panel.has-champion .champion-main h2 {
+  color: var(--green);
+  font-size: clamp(38px, 5vw, 68px);
+  line-height: 0.95;
 }
 
 .champion-panel .progress-text {
@@ -213,6 +229,10 @@ main {
   overflow: hidden;
   align-items: center;
   justify-items: center;
+}
+
+main:has(.champion-panel.has-champion) .bracket-wrap {
+  height: calc(100% - 124px);
 }
 
 .bracket {
