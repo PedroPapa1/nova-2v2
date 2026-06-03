@@ -630,7 +630,20 @@ body[data-mode="viewer"] .score-controls {
     font-size: 10px;
   }
 
-  .home-badge,
+  .team-badges {
+    gap: 2px;
+  }
+
+  .home-badge {
+    width: 7px;
+    height: 7px;
+    overflow: hidden;
+    padding: 0;
+    border-radius: 50%;
+    color: transparent;
+    background: var(--soft);
+  }
+
   .winner-badge {
     padding: 1px 2px;
     font-size: 7px;
