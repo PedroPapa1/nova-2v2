@@ -354,6 +354,10 @@ body[data-mode="admin"] .team:hover:not(:disabled) {
   box-shadow: inset 2px 0 0 var(--success);
 }
 
+.team.home-team {
+  border-color: rgba(125, 211, 252, 0.42);
+}
+
 .team.loser {
   opacity: 0.48;
 }
@@ -372,11 +376,32 @@ body[data-mode="admin"] .team:hover:not(:disabled) {
   white-space: nowrap;
 }
 
+.team-badges {
+  display: inline-flex;
+  flex: 0 0 auto;
+  gap: 3px;
+  align-items: center;
+}
+
+.home-badge,
 .winner-badge {
   flex: 0 0 auto;
-  color: var(--success);
-  font-size: 9px;
+  padding: 1px 3px;
+  border-radius: 4px;
+  font-size: 8px;
   font-weight: 950;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.home-badge {
+  border: 1px solid rgba(125, 211, 252, 0.4);
+  color: var(--cyan);
+  background: rgba(125, 211, 252, 0.11);
+}
+
+.winner-badge {
+  color: var(--success);
 }
 
 .score-controls {

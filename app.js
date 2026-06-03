@@ -232,6 +232,7 @@ function createMatch(context) {
   const teams = getMatchTeams(context);
   const winner = getWinner(context);
   const score = getScore(context);
+  const homeTeam = getHomeTeam(context, teams);
 
   match.classList.toggle("final-match", context.type === "final");
   match.dataset.type = context.type;
@@ -248,7 +249,7 @@ function createMatch(context) {
 
   [0, 1].forEach((slot) => {
     const row = match.querySelector(slot === 0 ? ".team-a" : ".team-b");
-    row.append(createTeamButton(context, teams[slot], winner));
+    row.append(createTeamButton(context, teams[slot], winner, homeTeam));
     row.append(createScoreControls(context, slot, teams[slot], score[slot]));
   });
 
@@ -346,6 +347,86 @@ function getMatchTeams(context) {
   return [previous[context.matchIndex * 2], previous[context.matchIndex * 2 + 1]];
 }
 
+function getHomeTeam(context, teams) {
+  const [firstTeam, secondTeam] = teams;
+  if (!firstTeam || !secondTeam) return null;
+
+  const first = getHomePerformance(context, firstTeam);
+  const second = getHomePerformance(context, secondTeam);
+
+  if (first.previousMargin !== second.previousMargin) {
+    return first.previousMargin > second.previousMargin ? firstTeam : secondTeam;
+  }
+
+  if (first.totalBalance !== second.totalBalance) {
+    return first.totalBalance > second.totalBalance ? firstTeam : secondTeam;
+  }
+
+  return firstTeam.localeCompare(secondTeam, "pt-BR", { sensitivity: "base" }) <= 0 ? firstTeam : secondTeam;
+}
+
+function getHomePerformance(context, team) {
+  const side = getPerformanceSide(context, team);
+  const previousRound = context.type === "final" ? 3 : context.roundIndex - 1;
+  const beforeRound = context.type === "final" ? sideMatchCounts.length : context.roundIndex;
+
+  if (!side || previousRound < 0) {
+    return { previousMargin: 0, totalBalance: 0 };
+  }
+
+  return {
+    previousMargin: getTeamMarginInRound(side, previousRound, team),
+    totalBalance: getTeamBalanceBeforeRound(side, beforeRound, team),
+  };
+}
+
+function getPerformanceSide(context, team) {
+  if (context.type === "side") return context.side;
+  if (state.leftTeams.includes(team) || state.sides.left.winners.flat().includes(team)) return "left";
+  if (state.rightTeams.includes(team) || state.sides.right.winners.flat().includes(team)) return "right";
+  return null;
+}
+
+function getTeamMarginInRound(side, roundIndex, team) {
+  for (let matchIndex = 0; matchIndex < sideMatchCounts[roundIndex]; matchIndex += 1) {
+    const teams = getSideMatchTeams(side, roundIndex, matchIndex);
+    const slot = teams.indexOf(team);
+    if (slot === -1) continue;
+
+    const score = state.sides[side].scores[roundIndex][matchIndex];
+    return Math.abs(score[slot] - score[slot === 0 ? 1 : 0]);
+  }
+
+  return 0;
+}
+
+function getTeamBalanceBeforeRound(side, beforeRound, team) {
+  let balance = 0;
+
+  for (let roundIndex = 0; roundIndex < beforeRound; roundIndex += 1) {
+    for (let matchIndex = 0; matchIndex < sideMatchCounts[roundIndex]; matchIndex += 1) {
+      const teams = getSideMatchTeams(side, roundIndex, matchIndex);
+      const slot = teams.indexOf(team);
+      if (slot === -1) continue;
+
+      const score = state.sides[side].scores[roundIndex][matchIndex];
+      balance += score[slot] - score[slot === 0 ? 1 : 0];
+    }
+  }
+
+  return balance;
+}
+
+function getSideMatchTeams(side, roundIndex, matchIndex) {
+  if (roundIndex === 0) {
+    const teams = side === "left" ? state.leftTeams : state.rightTeams;
+    return [teams[matchIndex * 2], teams[matchIndex * 2 + 1]];
+  }
+
+  const previous = state.sides[side].winners[roundIndex - 1];
+  return [previous[matchIndex * 2], previous[matchIndex * 2 + 1]];
+}
+
 function getWinner(context) {
   if (context.type === "final") return state.final.winner;
   return state.sides[context.side].winners[context.roundIndex][context.matchIndex];
@@ -365,14 +446,15 @@ function winsNeeded(context) {
   return Math.ceil(getBestOf(context) / 2);
 }
 
-function createTeamButton(context, team, winner) {
+function createTeamButton(context, team, winner, homeTeam) {
   const button = document.createElement("button");
   button.className = "team";
   button.type = "button";
   button.disabled = !isAdmin || !team;
-  button.innerHTML = team ? teamMarkup(team, winner === team) : emptyMarkup();
+  button.innerHTML = team ? teamMarkup(team, winner === team, homeTeam === team) : emptyMarkup();
   button.classList.toggle("winner", Boolean(team && winner === team));
   button.classList.toggle("loser", Boolean(team && winner && winner !== team));
+  button.classList.toggle("home-team", Boolean(team && homeTeam === team));
 
   if (isAdmin && team) {
     button.addEventListener("click", () => chooseWinner(context, team));
@@ -474,13 +556,14 @@ function clearDownstream(context) {
   state.final.score = [0, 0];
 }
 
-function teamMarkup(team, isWinner) {
-  const badge = isWinner ? '<span class="winner-badge">OK</span>' : "";
+function teamMarkup(team, isWinner, isHome) {
+  const homeBadge = isHome ? '<span class="home-badge">Mando</span>' : "";
+  const winnerBadge = isWinner ? '<span class="winner-badge">OK</span>' : "";
   return `
     <span class="team-name">
       <span class="team-label">${team}</span>
     </span>
-    ${badge}
+    <span class="team-badges">${homeBadge}${winnerBadge}</span>
   `;
 }
 
