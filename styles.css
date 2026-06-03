@@ -497,3 +497,157 @@ body[data-mode="viewer"] .score-controls {
     min-width: 1120px;
   }
 }
+
+@media (max-width: 760px) {
+  body {
+    overflow: auto;
+  }
+
+  .topbar {
+    height: auto;
+    min-height: 86px;
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px 12px;
+  }
+
+  .brand {
+    width: 100%;
+  }
+
+  .nova-mark {
+    width: 46px;
+    height: 46px;
+  }
+
+  h1 {
+    font-size: 24px;
+  }
+
+  .actions,
+  .status-strip {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .actions {
+    gap: 6px;
+  }
+
+  .text-button {
+    height: 32px;
+    padding: 0 9px;
+    font-size: 12px;
+  }
+
+  main {
+    width: 100%;
+    min-width: 0;
+    height: calc(100vh - 118px);
+    min-height: 640px;
+    padding: 8px;
+  }
+
+  .champion-panel {
+    height: 64px;
+    padding: 8px 10px;
+  }
+
+  .champion-panel.has-champion {
+    height: 92px;
+  }
+
+  .champion-main h2 {
+    max-width: calc(100vw - 40px);
+    font-size: 22px;
+  }
+
+  .champion-panel.has-champion .champion-main h2 {
+    font-size: clamp(30px, 10vw, 44px);
+  }
+
+  .champion-panel .progress-text {
+    position: static;
+    display: none;
+  }
+
+  .bracket-wrap,
+  main:has(.champion-panel.has-champion) .bracket-wrap {
+    height: calc(100% - 74px);
+    overflow-x: auto;
+    overflow-y: hidden;
+    justify-items: start;
+    padding-bottom: 6px;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  main:has(.champion-panel.has-champion) .bracket-wrap {
+    height: calc(100% - 102px);
+  }
+
+  .bracket {
+    width: 1120px;
+    min-width: 1120px;
+    height: 100%;
+    max-height: 660px;
+    grid-template-columns: 468px 144px 468px;
+    gap: 20px;
+  }
+
+  .side {
+    grid-template-columns: repeat(4, 108px);
+    gap: 8px;
+  }
+
+  .round,
+  .final-lane {
+    gap: 4px;
+    padding-top: 24px;
+  }
+
+  .round-header {
+    height: 20px;
+    padding: 4px 4px;
+    font-size: 8px;
+  }
+
+  .match {
+    padding: 4px;
+  }
+
+  .team-row {
+    grid-template-columns: minmax(0, 1fr) 42px;
+    gap: 3px;
+  }
+
+  .team {
+    min-height: 23px;
+    padding: 3px 5px;
+  }
+
+  .team-name {
+    font-size: 10px;
+  }
+
+  .home-badge,
+  .winner-badge {
+    padding: 1px 2px;
+    font-size: 7px;
+  }
+
+  .score-controls {
+    grid-template-columns: 12px 18px 12px;
+  }
+
+  .score-button {
+    width: 12px;
+    min-height: 23px;
+    font-size: 11px;
+  }
+
+  .score-value {
+    min-height: 23px;
+    font-size: 12px;
+  }
+}
