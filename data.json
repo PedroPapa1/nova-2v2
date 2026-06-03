@@ -2,67 +2,91 @@
   "version": 3,
   "title": "Nova 2v2",
   "leftTeams": [
+    "Espanha",
+    "Egito",
+    "Polonia",
+    "Inglaterra",
+    "Estados Unidos",
+    "Servia",
+    "Mexico",
+    "Japao",
+    "Uruguai",
+    "Republica Tcheca",
+    "Suica",
     "Brasil",
     "Argentina",
-    "Alemanha",
-    "Italia",
-    "Inglaterra",
-    "Franca",
-    "Espanha",
-    "Portugal",
-    "Holanda",
-    "Uruguai",
-    "Mexico",
-    "Belgica",
-    "Croacia",
+    "Coreia do Sul",
     "Marrocos",
-    "Estados Unidos",
-    "Japao"
+    "Colombia"
   ],
   "rightTeams": [
-    "Colombia",
-    "Chile",
-    "Polonia",
-    "Dinamarca",
-    "Suica",
-    "Servia",
-    "Suecia",
-    "Noruega",
-    "Turquia",
-    "Coreia do Sul",
+    "Croacia",
+    "Alemanha",
     "Camaroes",
-    "Nigeria",
-    "Egito",
     "Canada",
+    "Noruega",
+    "Nigeria",
+    "Turquia",
+    "Portugal",
+    "Suecia",
+    "Italia",
     "Australia",
-    "Republica Tcheca"
+    "Dinamarca",
+    "Chile",
+    "Belgica",
+    "Franca",
+    "Holanda"
   ],
   "sides": {
     "left": {
-      "winners": [
-        [null, null, null, null, null, null, null, null],
-        [null, null, null, null],
-        [null, null],
-        [null]
-      ],
+      "winners": [[null, null, null, null, null, null, null, null], [null, null, null, null], [null, null], [null]],
       "scores": [
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0]],
+        [
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0]
+        ],
+        [
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0]
+        ],
+        [
+          [0, 0],
+          [0, 0]
+        ],
         [[0, 0]]
       ]
     },
     "right": {
-      "winners": [
-        [null, null, null, null, null, null, null, null],
-        [null, null, null, null],
-        [null, null],
-        [null]
-      ],
+      "winners": [[null, null, null, null, null, null, null, null], [null, null, null, null], [null, null], [null]],
       "scores": [
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0]],
+        [
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0]
+        ],
+        [
+          [0, 0],
+          [0, 0],
+          [0, 0],
+          [0, 0]
+        ],
+        [
+          [0, 0],
+          [0, 0]
+        ],
         [[0, 0]]
       ]
     }
