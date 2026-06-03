@@ -254,6 +254,7 @@ body[data-mode="viewer"] .champion-panel {
 
 .round,
 .final-lane {
+  position: relative;
   display: grid;
   min-height: 0;
   gap: 5px;
@@ -261,6 +262,10 @@ body[data-mode="viewer"] .champion-panel {
 }
 
 .round-header {
+  position: absolute;
+  right: 0;
+  left: 0;
+  z-index: 3;
   padding: 5px 6px;
   border: 1px solid var(--stroke-soft);
   border-radius: 7px;

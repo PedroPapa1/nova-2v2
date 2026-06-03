@@ -186,7 +186,7 @@ function render() {
   const decided = sides.reduce((total, side) => total + state.sides[side].winners.flat().filter(Boolean).length, 0);
   const finalDecided = state.final.winner ? 1 : 0;
   progressText.textContent = `${decided + finalDecided} de 31 partidas definidas`;
-  requestAnimationFrame(drawConnectors);
+  requestAnimationFrame(syncBracketLayout);
 }
 
 function createSide(side) {
@@ -255,6 +255,22 @@ function createMatch(context) {
   return match;
 }
 
+function syncBracketLayout() {
+  positionRoundHeaders();
+  drawConnectors();
+}
+
+function positionRoundHeaders() {
+  bracket.querySelectorAll(".round, .final-lane").forEach((column) => {
+    const header = column.querySelector(".round-header");
+    const firstMatch = column.querySelector(".match");
+    if (!header || !firstMatch) return;
+
+    const top = firstMatch.offsetTop - header.offsetHeight - 7;
+    header.style.top = `${Math.max(0, top)}px`;
+  });
+}
+
 function drawConnectors() {
   bracket.querySelector(".connector-layer")?.remove();
 
@@ -308,7 +324,7 @@ function createPath(fromElement, toElement, side, bounds) {
 
 window.addEventListener("resize", () => {
   if (!state) return;
-  requestAnimationFrame(drawConnectors);
+  requestAnimationFrame(syncBracketLayout);
 });
 
 function getMatchTitle(context) {
