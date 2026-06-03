@@ -207,7 +207,8 @@ body[data-mode="viewer"] .champion-panel {
   display: grid;
   height: calc(100% - 66px);
   overflow: hidden;
-  place-items: center;
+  align-items: center;
+  justify-items: center;
 }
 
 .bracket {
@@ -219,6 +220,7 @@ body[data-mode="viewer"] .champion-panel {
   grid-template-columns: minmax(0, 1fr) 184px minmax(0, 1fr);
   gap: 22px;
   align-items: center;
+  margin: 0 auto;
 }
 
 .connector-layer {
@@ -259,6 +261,7 @@ body[data-mode="viewer"] .champion-panel {
   min-height: 0;
   gap: 5px;
   align-content: space-around;
+  padding-top: 28px;
 }
 
 .round-header {
@@ -266,6 +269,7 @@ body[data-mode="viewer"] .champion-panel {
   right: 0;
   left: 0;
   z-index: 3;
+  height: 22px;
   padding: 5px 6px;
   border: 1px solid var(--stroke-soft);
   border-radius: 7px;
@@ -276,6 +280,7 @@ body[data-mode="viewer"] .champion-panel {
   line-height: 1.1;
   text-align: center;
   text-transform: uppercase;
+  pointer-events: none;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
