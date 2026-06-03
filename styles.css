@@ -1,15 +1,20 @@
 :root {
   color-scheme: dark;
-  --bg: #07080a;
-  --panel: #12151b;
-  --panel-2: #171b22;
-  --line: rgba(255, 255, 255, 0.16);
-  --text: #f5f7fa;
-  --muted: #98a2b3;
-  --accent: #8ff3ff;
-  --gold: #ffcf5a;
+  --bg: #050608;
+  --panel: #101318;
+  --panel-2: #171b21;
+  --panel-3: #20252d;
+  --stroke: rgba(255, 255, 255, 0.14);
+  --stroke-soft: rgba(255, 255, 255, 0.08);
+  --line: rgba(204, 213, 224, 0.42);
+  --line-live: rgba(134, 239, 172, 0.86);
+  --text: #f4f7fb;
+  --muted: #9aa4b2;
+  --silver: #d8dee8;
+  --cyan: #7dd3fc;
+  --gold: #f5c451;
   --danger: #ff6b6b;
-  --success: #76f2a8;
+  --success: #86efac;
 }
 
 * {
@@ -21,8 +26,9 @@ body {
   min-height: 100vh;
   overflow: hidden;
   background:
-    linear-gradient(135deg, rgba(143, 243, 255, 0.08), transparent 32%),
-    radial-gradient(circle at 80% 10%, rgba(255, 207, 90, 0.09), transparent 24%),
+    linear-gradient(115deg, rgba(255, 255, 255, 0.055), transparent 22%),
+    linear-gradient(28deg, transparent 0 54%, rgba(125, 211, 252, 0.06) 54.2%, transparent 54.7%),
+    radial-gradient(circle at 50% -10%, rgba(216, 222, 232, 0.12), transparent 30%),
     var(--bg);
   color: var(--text);
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -35,13 +41,13 @@ label {
 
 .topbar {
   display: flex;
-  height: 74px;
+  height: 72px;
   gap: 14px;
   align-items: center;
   justify-content: space-between;
-  padding: 10px 16px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(7, 8, 10, 0.9);
+  padding: 10px 18px;
+  border-bottom: 1px solid var(--stroke-soft);
+  background: rgba(5, 6, 8, 0.92);
 }
 
 .brand {
@@ -59,19 +65,21 @@ label {
   flex: 0 0 auto;
   place-items: center;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(216, 222, 232, 0.24);
   border-radius: 8px;
-  background: #0d0f12;
-  box-shadow: inset 0 0 22px rgba(255, 255, 255, 0.08);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.09), transparent 42%),
+    #0b0d10;
+  box-shadow: inset 0 0 22px rgba(255, 255, 255, 0.08), 0 0 22px rgba(125, 211, 252, 0.08);
 }
 
 .nova-mark::before,
 .nova-mark::after {
   position: absolute;
-  width: 86px;
+  width: 88px;
   height: 1px;
   content: "";
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(216, 222, 232, 0.36);
 }
 
 .nova-mark::before {
@@ -88,13 +96,13 @@ label {
   font-size: 15px;
   font-weight: 950;
   letter-spacing: 0;
-  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.92);
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.45);
+  -webkit-text-stroke: 1px rgba(244, 247, 251, 0.94);
+  text-shadow: 0 0 10px rgba(244, 247, 251, 0.42);
 }
 
 .eyebrow {
   margin: 0 0 2px;
-  color: var(--accent);
+  color: var(--cyan);
   font-size: 10px;
   font-weight: 850;
   letter-spacing: 0;
@@ -138,17 +146,17 @@ h2 {
   height: 34px;
   place-items: center;
   padding: 0 10px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--stroke);
   border-radius: 7px;
-  background: rgba(255, 255, 255, 0.07);
+  background: rgba(255, 255, 255, 0.065);
   color: var(--text);
   cursor: pointer;
   font-weight: 800;
 }
 
 .text-button:hover {
-  border-color: rgba(143, 243, 255, 0.45);
-  background: rgba(143, 243, 255, 0.12);
+  border-color: rgba(125, 211, 252, 0.58);
+  background: rgba(125, 211, 252, 0.12);
 }
 
 .danger {
@@ -156,7 +164,7 @@ h2 {
 }
 
 .danger:hover {
-  border-color: rgba(255, 107, 107, 0.55);
+  border-color: rgba(255, 107, 107, 0.58);
   background: rgba(255, 107, 107, 0.14);
 }
 
@@ -169,7 +177,7 @@ h2 {
 }
 
 main {
-  height: calc(100vh - 74px);
+  height: calc(100vh - 72px);
   padding: 10px 12px 12px;
 }
 
@@ -181,10 +189,13 @@ main {
   justify-content: space-between;
   max-width: 1600px;
   margin: 0 auto 8px;
-  padding: 8px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 8px 16px;
+  border: 1px solid rgba(245, 196, 81, 0.24);
   border-radius: 8px;
-  background: linear-gradient(135deg, rgba(143, 243, 255, 0.12), rgba(255, 207, 90, 0.08)), rgba(18, 21, 27, 0.78);
+  background:
+    linear-gradient(90deg, rgba(245, 196, 81, 0.16), transparent 42%, rgba(125, 211, 252, 0.08)),
+    rgba(16, 19, 24, 0.84);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
 body[data-mode="viewer"] .champion-panel {
@@ -200,20 +211,45 @@ body[data-mode="viewer"] .champion-panel {
 }
 
 .bracket {
+  position: relative;
   display: grid;
-  width: min(100%, 1580px);
+  width: min(100%, 1600px);
   height: 100%;
   max-height: 760px;
-  grid-template-columns: minmax(0, 1fr) 176px minmax(0, 1fr);
-  gap: 16px;
+  grid-template-columns: minmax(0, 1fr) 184px minmax(0, 1fr);
+  gap: 22px;
   align-items: center;
+}
+
+.connector-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.connector-layer path {
+  fill: none;
+  stroke: var(--line);
+  stroke-linecap: square;
+  stroke-linejoin: round;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.side,
+.final-lane {
+  position: relative;
+  z-index: 1;
 }
 
 .side {
   display: grid;
   height: 100%;
-  grid-template-columns: repeat(4, minmax(118px, 1fr));
-  gap: 10px;
+  grid-template-columns: repeat(4, minmax(116px, 1fr));
+  gap: 13px;
 }
 
 .round,
@@ -226,18 +262,20 @@ body[data-mode="viewer"] .champion-panel {
 
 .round-header {
   padding: 5px 6px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid var(--stroke-soft);
   border-radius: 7px;
-  background: rgba(8, 9, 11, 0.92);
-  color: var(--muted);
+  background: rgba(5, 6, 8, 0.88);
+  color: var(--silver);
   font-size: 10px;
   font-weight: 900;
   line-height: 1.1;
   text-align: center;
   text-transform: uppercase;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
 .final-header {
+  border-color: rgba(245, 196, 81, 0.24);
   color: var(--gold);
 }
 
@@ -246,38 +284,12 @@ body[data-mode="viewer"] .champion-panel {
   display: grid;
   gap: 3px;
   padding: 5px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--stroke-soft);
   border-radius: 7px;
-  background: rgba(18, 21, 27, 0.9);
-  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
-}
-
-.side-left .match::after,
-.side-right .match::before,
-.final-match::before,
-.final-match::after {
-  position: absolute;
-  top: 50%;
-  width: 10px;
-  height: 1px;
-  content: "";
-  background: var(--line);
-}
-
-.side-left .match::after {
-  right: -11px;
-}
-
-.side-right .match::before {
-  left: -11px;
-}
-
-.final-match::before {
-  left: -17px;
-}
-
-.final-match::after {
-  right: -17px;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), transparent),
+    rgba(16, 19, 24, 0.95);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.24);
 }
 
 .match-title {
@@ -305,7 +317,7 @@ body[data-mode="viewer"] .champion-panel {
   width: 100%;
   min-height: 24px;
   padding: 3px 6px;
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.055);
   color: var(--text);
@@ -318,17 +330,17 @@ body[data-mode="admin"] .team:not(:disabled) {
 }
 
 body[data-mode="admin"] .team:hover:not(:disabled) {
-  border-color: rgba(143, 243, 255, 0.55);
-  background: rgba(143, 243, 255, 0.11);
+  border-color: rgba(125, 211, 252, 0.58);
+  background: rgba(125, 211, 252, 0.12);
 }
 
 .team:disabled {
-  opacity: 0.48;
+  opacity: 0.44;
 }
 
 .team.winner {
-  border-color: rgba(118, 242, 168, 0.72);
-  background: rgba(118, 242, 168, 0.14);
+  border-color: rgba(134, 239, 172, 0.72);
+  background: rgba(134, 239, 172, 0.13);
   box-shadow: inset 2px 0 0 var(--success);
 }
 
@@ -352,7 +364,7 @@ body[data-mode="admin"] .team:hover:not(:disabled) {
 
 .winner-badge {
   flex: 0 0 auto;
-  color: var(--gold);
+  color: var(--success);
   font-size: 9px;
   font-weight: 950;
 }
@@ -362,7 +374,7 @@ body[data-mode="admin"] .team:hover:not(:disabled) {
   grid-template-columns: 14px 18px 14px;
   align-items: center;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 5px;
   background: rgba(255, 255, 255, 0.055);
 }
@@ -384,7 +396,7 @@ body[data-mode="viewer"] .score-controls {
 }
 
 .score-button:hover:not(:disabled) {
-  background: rgba(143, 243, 255, 0.13);
+  background: rgba(125, 211, 252, 0.14);
 }
 
 .score-button:disabled {

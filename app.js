@@ -186,6 +186,7 @@ function render() {
   const decided = sides.reduce((total, side) => total + state.sides[side].winners.flat().filter(Boolean).length, 0);
   const finalDecided = state.final.winner ? 1 : 0;
   progressText.textContent = `${decided + finalDecided} de 31 partidas definidas`;
+  requestAnimationFrame(drawConnectors);
 }
 
 function createSide(side) {
@@ -195,7 +196,8 @@ function createSide(side) {
   const order = side === "left" ? [0, 1, 2, 3] : [3, 2, 1, 0];
   order.forEach((roundIndex) => {
     const round = document.createElement("section");
-    round.className = "round";
+    round.className = `round round-${roundIndex}`;
+    round.dataset.round = roundIndex;
 
     const header = document.createElement("div");
     header.className = "round-header";
@@ -232,6 +234,16 @@ function createMatch(context) {
   const score = getScore(context);
 
   match.classList.toggle("final-match", context.type === "final");
+  match.dataset.type = context.type;
+  if (context.type === "side") {
+    match.dataset.side = context.side;
+    match.dataset.round = context.roundIndex;
+    match.dataset.match = context.matchIndex;
+  } else {
+    match.dataset.side = "final";
+    match.dataset.round = "final";
+    match.dataset.match = "0";
+  }
   match.querySelector(".match-title").textContent = getMatchTitle(context);
 
   [0, 1].forEach((slot) => {
@@ -242,6 +254,62 @@ function createMatch(context) {
 
   return match;
 }
+
+function drawConnectors() {
+  bracket.querySelector(".connector-layer")?.remove();
+
+  const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  svg.classList.add("connector-layer");
+  svg.setAttribute("aria-hidden", "true");
+  svg.setAttribute("focusable", "false");
+  bracket.prepend(svg);
+
+  const bounds = bracket.getBoundingClientRect();
+  const paths = [];
+
+  sides.forEach((side) => {
+    for (let roundIndex = 0; roundIndex < sideMatchCounts.length - 1; roundIndex += 1) {
+      for (let matchIndex = 0; matchIndex < sideMatchCounts[roundIndex]; matchIndex += 1) {
+        const from = findMatch(side, roundIndex, matchIndex);
+        const to = findMatch(side, roundIndex + 1, Math.floor(matchIndex / 2));
+        if (from && to) paths.push(createPath(from, to, side, bounds));
+      }
+    }
+  });
+
+  const leftFinalist = findMatch("left", 3, 0);
+  const rightFinalist = findMatch("right", 3, 0);
+  const finalMatch = bracket.querySelector('.final-match[data-type="final"]');
+  if (leftFinalist && finalMatch) paths.push(createPath(leftFinalist, finalMatch, "left", bounds));
+  if (rightFinalist && finalMatch) paths.push(createPath(rightFinalist, finalMatch, "right", bounds));
+
+  svg.setAttribute("viewBox", `0 0 ${bounds.width} ${bounds.height}`);
+  svg.append(...paths);
+}
+
+function findMatch(side, roundIndex, matchIndex) {
+  return bracket.querySelector(`.match[data-side="${side}"][data-round="${roundIndex}"][data-match="${matchIndex}"]`);
+}
+
+function createPath(fromElement, toElement, side, bounds) {
+  const from = fromElement.getBoundingClientRect();
+  const to = toElement.getBoundingClientRect();
+  const fromX = side === "left" ? from.right - bounds.left : from.left - bounds.left;
+  const toX = side === "left" ? to.left - bounds.left : to.right - bounds.left;
+  const fromY = from.top + from.height / 2 - bounds.top;
+  const toY = to.top + to.height / 2 - bounds.top;
+  const midX = fromX + (toX - fromX) / 2;
+
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  path.setAttribute("d", `M ${fromX} ${fromY} H ${midX} V ${toY} H ${toX}`);
+  path.setAttribute("pathLength", "1");
+  return path;
+}
+
+window.addEventListener("resize", () => {
+  if (!state) return;
+  requestAnimationFrame(drawConnectors);
+});
 
 function getMatchTitle(context) {
   if (context.type === "final") return "Final";
