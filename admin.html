@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin - Nova 2v2</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-mode="admin">
+    <header class="topbar">
+      <div class="brand">
+        <div class="nova-mark" aria-hidden="true"><span>NOVA</span></div>
+        <div>
+          <p class="eyebrow">Admin</p>
+          <h1>Nova 2v2</h1>
+        </div>
+      </div>
+      <div class="actions">
+        <button id="exportButton" class="text-button" type="button">Baixar data.json</button>
+        <label class="text-button file-button">
+          Importar
+          <input id="importFile" type="file" accept="application/json" />
+        </label>
+        <button id="shuffleButton" class="text-button" type="button">Embaralhar</button>
+        <button id="resetButton" class="text-button danger" type="button">Resetar</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="champion-panel" aria-live="polite">
+        <div>
+          <p class="eyebrow">Campeao</p>
+          <h2 id="championName">Aguardando final</h2>
+        </div>
+        <div id="progressText" class="progress-text">0 de 31 partidas definidas</div>
+      </section>
+
+      <section class="bracket-wrap" aria-label="Chaveamento do campeonato">
+        <div id="bracket" class="bracket"></div>
+      </section>
+    </main>
+
+    <template id="matchTemplate">
+      <article class="match">
+        <div class="match-title"></div>
+        <div class="team-row team-a"></div>
+        <div class="team-row team-b"></div>
+      </article>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nova 2v2 - Chaveamento</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-mode="viewer">
+    <header class="topbar">
+      <div class="brand">
+        <div class="nova-mark" aria-hidden="true"><span>NOVA</span></div>
+        <div>
+          <p class="eyebrow">Campeonato</p>
+          <h1>Nova 2v2</h1>
+        </div>
+      </div>
+      <div class="status-strip">
+        <span id="progressText">0 de 31 partidas</span>
+      </div>
+    </header>
+
+    <main>
+      <section class="champion-panel" aria-live="polite">
+        <p class="eyebrow">Campeao</p>
+        <h2 id="championName">Aguardando final</h2>
+      </section>
+
+      <section class="bracket-wrap" aria-label="Chaveamento do campeonato">
+        <div id="bracket" class="bracket"></div>
+      </section>
+    </main>
+
+    <template id="matchTemplate">
+      <article class="match">
+        <div class="match-title"></div>
+        <div class="team-row team-a"></div>
+        <div class="team-row team-b"></div>
+      </article>
+    </template>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

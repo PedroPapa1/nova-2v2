@@ -1,0 +1,75 @@
+{
+  "version": 3,
+  "title": "Nova 2v2",
+  "leftTeams": [
+    "Brasil",
+    "Argentina",
+    "Alemanha",
+    "Italia",
+    "Inglaterra",
+    "Franca",
+    "Espanha",
+    "Portugal",
+    "Holanda",
+    "Uruguai",
+    "Mexico",
+    "Belgica",
+    "Croacia",
+    "Marrocos",
+    "Estados Unidos",
+    "Japao"
+  ],
+  "rightTeams": [
+    "Colombia",
+    "Chile",
+    "Polonia",
+    "Dinamarca",
+    "Suica",
+    "Servia",
+    "Suecia",
+    "Noruega",
+    "Turquia",
+    "Coreia do Sul",
+    "Camaroes",
+    "Nigeria",
+    "Egito",
+    "Canada",
+    "Australia",
+    "Republica Tcheca"
+  ],
+  "sides": {
+    "left": {
+      "winners": [
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null],
+        [null, null],
+        [null]
+      ],
+      "scores": [
+        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+        [[0, 0], [0, 0], [0, 0], [0, 0]],
+        [[0, 0], [0, 0]],
+        [[0, 0]]
+      ]
+    },
+    "right": {
+      "winners": [
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null],
+        [null, null],
+        [null]
+      ],
+      "scores": [
+        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+        [[0, 0], [0, 0], [0, 0], [0, 0]],
+        [[0, 0], [0, 0]],
+        [[0, 0]]
+      ]
+    }
+  },
+  "final": {
+    "bestOf": 5,
+    "score": [0, 0],
+    "winner": null
+  }
+}
