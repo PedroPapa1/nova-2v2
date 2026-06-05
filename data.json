@@ -2,98 +2,243 @@
   "version": 3,
   "title": "Nova 2v2",
   "leftTeams": [
-    "Espanha",
-    "Egito",
-    "Polônia",
     "Inglaterra",
-    "Estados Unidos",
-    "Sérvia",
-    "México",
-    "Japão",
+    "Itália",
+    "Chile",
     "Uruguai",
-    "República Tcheca",
-    "Suíça",
-    "Brasil",
-    "Argentina",
-    "Coreia do Sul",
+    "França",
+    "Holanda",
+    "Colômbia",
     "Marrocos",
-    "Colômbia"
+    "México",
+    "Sérvia",
+    "Turquia",
+    "Japão",
+    "Canadá",
+    "Suécia",
+    "Bélgica",
+    "Argentina"
   ],
   "rightTeams": [
-    "Croácia",
     "Alemanha",
+    "Dinamarca",
+    "Brasil",
     "Camarões",
-    "Canadá",
+    "Croácia",
+    "Portugal",
+    "Polônia",
     "Noruega",
     "Nigéria",
-    "Turquia",
-    "Portugal",
-    "Suécia",
-    "Itália",
+    "Coreia do Sul",
     "Austrália",
-    "Dinamarca",
-    "Chile",
-    "Bélgica",
-    "França",
-    "Holanda"
+    "República Tcheca",
+    "Espanha",
+    "Suíça",
+    "Estados Unidos",
+    "Egito"
   ],
   "sides": {
     "left": {
-      "winners": [[null, null, null, null, null, null, null, null], [null, null, null, null], [null, null], [null]],
+      "winners": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null
+        ]
+      ],
       "scores": [
         [
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0]
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
         ],
         [
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0]
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
         ],
         [
-          [0, 0],
-          [0, 0]
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
         ],
-        [[0, 0]]
+        [
+          [
+            0,
+            0
+          ]
+        ]
       ]
     },
     "right": {
-      "winners": [[null, null, null, null, null, null, null, null], [null, null, null, null], [null, null], [null]],
+      "winners": [
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null
+        ]
+      ],
       "scores": [
         [
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0]
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
         ],
         [
-          [0, 0],
-          [0, 0],
-          [0, 0],
-          [0, 0]
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
         ],
         [
-          [0, 0],
-          [0, 0]
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
         ],
-        [[0, 0]]
+        [
+          [
+            0,
+            0
+          ]
+        ]
       ]
     }
   },
   "final": {
     "bestOf": 5,
-    "score": [0, 0],
+    "score": [
+      0,
+      0
+    ],
     "winner": null
   }
 }
