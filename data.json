@@ -40,213 +40,75 @@
   "sides": {
     "left": {
       "winners": [
-        [
-          "Inglaterra",
-          "Chile",
-          "França",
-          "Colômbia",
-          "Sérvia",
-          "Japão",
-          "Suécia",
-          "Bélgica"
-        ],
-        [
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          null,
-          null
-        ],
-        [
-          null
-        ]
+        ["Inglaterra", "Chile", "França", "Colômbia", "Sérvia", "Japão", "Suécia", "Bélgica"],
+        ["Chile", "França", "Sérvia", "Suécia"],
+        [null, null],
+        [null]
       ],
       "scores": [
         [
-          [
-            1,
-            0
-          ],
-          [
-            1,
-            0
-          ],
-          [
-            1,
-            0
-          ],
-          [
-            1,
-            0
-          ],
-          [
-            0,
-            1
-          ],
-          [
-            0,
-            1
-          ],
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            0
-          ]
+          [1, 0],
+          [1, 0],
+          [1, 0],
+          [1, 0],
+          [0, 1],
+          [0, 1],
+          [0, 1],
+          [1, 0]
         ],
         [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
+          [0, 1],
+          [1, 0],
+          [1, 0],
+          [1, 0]
         ],
         [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
+          [0, 0],
+          [0, 0]
         ],
-        [
-          [
-            0,
-            0
-          ]
-        ]
+        [[0, 0]]
       ]
     },
     "right": {
       "winners": [
-        [
-          "Alemanha",
-          "Brasil",
-          "Portugal",
-          "Polônia",
-          "Coreia do Sul",
-          "Austrália",
-          "Espanha",
-          "Egito"
-        ],
-        [
-          null,
-          null,
-          null,
-          null
-        ],
-        [
-          null,
-          null
-        ],
-        [
-          null
-        ]
+        ["Alemanha", "Brasil", "Portugal", "Polônia", "Coreia do Sul", "Austrália", "Espanha", "Egito"],
+        ["Brasil", "Polônia", "Austrália", "Espanha"],
+        [null, null],
+        [null]
       ],
       "scores": [
         [
-          [
-            1,
-            0
-          ],
-          [
-            1,
-            0
-          ],
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            0
-          ],
-          [
-            0,
-            1
-          ],
-          [
-            1,
-            0
-          ],
-          [
-            1,
-            0
-          ],
-          [
-            0,
-            1
-          ]
+          [1, 0],
+          [1, 0],
+          [0, 1],
+          [1, 0],
+          [0, 1],
+          [1, 0],
+          [1, 0],
+          [0, 1]
         ],
         [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
+          [0, 1],
+          [0, 1],
+          [0, 1],
+          [1, 0]
         ],
         [
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ]
+          [0, 0],
+          [0, 0]
         ],
-        [
-          [
-            0,
-            0
-          ]
-        ]
+        [[0, 0]]
       ]
     }
   },
   "final": {
     "bestOf": 5,
-    "score": [
-      0,
-      0
-    ],
+    "score": [0, 0],
     "winner": null
   },
   "bronze": {
     "bestOf": 5,
-    "score": [
-      0,
-      0
-    ],
+    "score": [0, 0],
     "winner": null
   }
 }
