@@ -43,7 +43,7 @@
         ["Inglaterra", "Chile", "França", "Colômbia", "Sérvia", "Japão", "Suécia", "Bélgica"],
         ["Chile", "França", "Sérvia", "Suécia"],
         ["França", "Suécia"],
-        [null]
+        ["França"]
       ],
       "scores": [
         [
@@ -66,7 +66,7 @@
           [0, 2],
           [0, 2]
         ],
-        [[0, 0]]
+        [[2, 0]]
       ]
     },
     "right": {
