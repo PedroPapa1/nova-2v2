@@ -74,7 +74,7 @@
         ["Alemanha", "Brasil", "Portugal", "Polônia", "Coreia do Sul", "Austrália", "Espanha", "Egito"],
         ["Brasil", "Polônia", "Austrália", "Espanha"],
         ["Brasil", "Austrália"],
-        [null]
+        ["Brasil"]
       ],
       "scores": [
         [
@@ -97,7 +97,7 @@
           [2, 0],
           [2, 1]
         ],
-        [[0, 0]]
+        [[2, 0]]
       ]
     }
   },
@@ -107,7 +107,7 @@
     "winner": null
   },
   "bronze": {
-    "bestOf": 3,
+    "bestOf": 5,
     "score": [0, 0],
     "winner": null,
     "overrideTeams": ["Espanha", null]
