@@ -240,5 +240,13 @@
       0
     ],
     "winner": null
+  },
+  "bronze": {
+    "bestOf": 3,
+    "score": [
+      0,
+      0
+    ],
+    "winner": null
   }
 }

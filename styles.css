@@ -279,13 +279,20 @@ main:has(.champion-panel.has-champion) .bracket-wrap {
 }
 
 .round,
-.final-lane {
+.center-match-block {
   position: relative;
   display: grid;
   min-height: 0;
   gap: 5px;
   align-content: space-around;
   padding-top: 28px;
+}
+
+.final-lane {
+  display: grid;
+  min-height: 0;
+  gap: 48px;
+  align-content: center;
 }
 
 .round-header {
@@ -311,6 +318,15 @@ main:has(.champion-panel.has-champion) .bracket-wrap {
 .final-header {
   border-color: var(--stroke);
   color: var(--text);
+}
+
+.placement-header {
+  border-color: var(--stroke);
+  color: var(--soft);
+}
+
+.bronze-match {
+  border-color: var(--stroke);
 }
 
 .match {
@@ -601,9 +617,13 @@ body[data-mode="viewer"] .score-controls {
   }
 
   .round,
-  .final-lane {
+  .center-match-block {
     gap: 4px;
     padding-top: 24px;
+  }
+
+  .final-lane {
+    gap: 34px;
   }
 
   .round-header {

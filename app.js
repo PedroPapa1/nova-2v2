@@ -102,7 +102,7 @@ function bindAdminActions() {
     if (!file) return;
 
     try {
-      const nextState = JSON.parse(await file.text());
+      const nextState = normalizeState(upgradeState(JSON.parse(await file.text())));
       validateState(nextState);
       state = nextState;
       saveState();
@@ -123,9 +123,9 @@ async function loadState() {
 
   try {
     const response = await fetch("./data.json", { cache: "no-store" });
-    const data = await response.json();
+    const data = upgradeState(await response.json());
     validateState(data);
-    return data;
+    return normalizeState(data);
   } catch (error) {
     return createState(initialTeams);
   }
@@ -133,12 +133,23 @@ async function loadState() {
 
 function readSavedState() {
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
+    const saved = upgradeState(JSON.parse(localStorage.getItem(STORAGE_KEY)));
     validateState(saved);
     return normalizeState(saved);
   } catch (error) {
     return null;
   }
+}
+
+function upgradeState(value) {
+  if (value && value.version === 3 && !value.bronze) {
+    value.bronze = {
+      bestOf: 3,
+      score: [0, 0],
+      winner: null,
+    };
+  }
+  return value;
 }
 
 function normalizeState(value) {
@@ -148,6 +159,7 @@ function normalizeState(value) {
     value.sides[side].winners = value.sides[side].winners.map((round) => round.map(normalizeTeamName));
   });
   value.final.winner = normalizeTeamName(value.final.winner);
+  value.bronze.winner = normalizeTeamName(value.bronze.winner);
   return value;
 }
 
@@ -171,6 +183,11 @@ function createState(teams) {
       score: [0, 0],
       winner: null,
     },
+    bronze: {
+      bestOf: 3,
+      score: [0, 0],
+      winner: null,
+    },
   };
 }
 
@@ -185,7 +202,7 @@ function validateState(value) {
   if (!value || value.version !== 3) throw new Error("Invalid version");
   if (!Array.isArray(value.leftTeams) || value.leftTeams.length !== 16) throw new Error("Invalid left");
   if (!Array.isArray(value.rightTeams) || value.rightTeams.length !== 16) throw new Error("Invalid right");
-  if (!value.sides || !value.final) throw new Error("Invalid bracket");
+  if (!value.sides || !value.final || !value.bronze) throw new Error("Invalid bracket");
 
   sides.forEach((side) => {
     const sideState = value.sides[side];
@@ -206,6 +223,9 @@ function validateState(value) {
   if (!Array.isArray(value.final.score) || value.final.score.length !== 2) {
     throw new Error("Invalid final score");
   }
+  if (!Array.isArray(value.bronze.score) || value.bronze.score.length !== 2) {
+    throw new Error("Invalid bronze score");
+  }
 }
 
 function saveState() {
@@ -220,7 +240,8 @@ function render() {
   championPanel.classList.toggle("has-champion", Boolean(champion));
   const decided = sides.reduce((total, side) => total + state.sides[side].winners.flat().filter(Boolean).length, 0);
   const finalDecided = state.final.winner ? 1 : 0;
-  progressText.textContent = `${decided + finalDecided} de 31 partidas definidas`;
+  const bronzeDecided = state.bronze.winner ? 1 : 0;
+  progressText.textContent = `${decided + finalDecided + bronzeDecided} de 32 partidas definidas`;
   requestAnimationFrame(syncBracketLayout);
 }
 
@@ -253,12 +274,23 @@ function createFinal() {
   const finalLane = document.createElement("section");
   finalLane.className = "final-lane";
 
-  const title = document.createElement("div");
-  title.className = "round-header final-header";
-  title.textContent = "Grande Final - MD5";
-
-  finalLane.append(title, createMatch({ type: "final" }));
+  finalLane.append(
+    createCenterMatch("Grande Final - MD5", { type: "final" }, "final-header"),
+    createCenterMatch("3º e 4º Lugar - MD3", { type: "bronze" }, "placement-header"),
+  );
   return finalLane;
+}
+
+function createCenterMatch(titleText, context, headerClass) {
+  const block = document.createElement("section");
+  block.className = "center-match-block";
+
+  const title = document.createElement("div");
+  title.className = `round-header ${headerClass}`;
+  title.textContent = titleText;
+
+  block.append(title, createMatch(context));
+  return block;
 }
 
 function createMatch(context) {
@@ -270,14 +302,15 @@ function createMatch(context) {
   const homeTeam = getHomeTeam(context, teams);
 
   match.classList.toggle("final-match", context.type === "final");
+  match.classList.toggle("bronze-match", context.type === "bronze");
   match.dataset.type = context.type;
   if (context.type === "side") {
     match.dataset.side = context.side;
     match.dataset.round = context.roundIndex;
     match.dataset.match = context.matchIndex;
   } else {
-    match.dataset.side = "final";
-    match.dataset.round = "final";
+    match.dataset.side = context.type;
+    match.dataset.round = context.type;
     match.dataset.match = "0";
   }
   match.querySelector(".match-title").textContent = getMatchTitle(context);
@@ -297,7 +330,7 @@ function syncBracketLayout() {
 }
 
 function positionRoundHeaders() {
-  bracket.querySelectorAll(".round, .final-lane").forEach((column) => {
+  bracket.querySelectorAll(".round, .center-match-block").forEach((column) => {
     const header = column.querySelector(".round-header");
     const firstMatch = column.querySelector(".match");
     if (!header || !firstMatch) return;
@@ -332,8 +365,11 @@ function drawConnectors() {
   const leftFinalist = findMatch("left", 3, 0);
   const rightFinalist = findMatch("right", 3, 0);
   const finalMatch = bracket.querySelector('.final-match[data-type="final"]');
+  const bronzeMatch = bracket.querySelector('.bronze-match[data-type="bronze"]');
   if (leftFinalist && finalMatch) paths.push(createPath(leftFinalist, finalMatch, "left", bounds));
   if (rightFinalist && finalMatch) paths.push(createPath(rightFinalist, finalMatch, "right", bounds));
+  if (leftFinalist && bronzeMatch) paths.push(createPath(leftFinalist, bronzeMatch, "left", bounds));
+  if (rightFinalist && bronzeMatch) paths.push(createPath(rightFinalist, bronzeMatch, "right", bounds));
 
   svg.setAttribute("viewBox", `0 0 ${bounds.width} ${bounds.height}`);
   svg.append(...paths);
@@ -365,12 +401,16 @@ window.addEventListener("resize", () => {
 
 function getMatchTitle(context) {
   if (context.type === "final") return "Final";
+  if (context.type === "bronze") return "Disputa de 3º lugar";
   return `Partida ${context.matchIndex + 1}`;
 }
 
 function getMatchTeams(context) {
   if (context.type === "final") {
     return [state.sides.left.winners[3][0], state.sides.right.winners[3][0]];
+  }
+  if (context.type === "bronze") {
+    return [getSemifinalLoser("left"), getSemifinalLoser("right")];
   }
 
   if (context.roundIndex === 0) {
@@ -380,6 +420,13 @@ function getMatchTeams(context) {
 
   const previous = state.sides[context.side].winners[context.roundIndex - 1];
   return [previous[context.matchIndex * 2], previous[context.matchIndex * 2 + 1]];
+}
+
+function getSemifinalLoser(side) {
+  const teams = getSideMatchTeams(side, 3, 0);
+  const winner = state.sides[side].winners[3][0];
+  if (!winner || !teams[0] || !teams[1]) return null;
+  return teams[0] === winner ? teams[1] : teams[0];
 }
 
 function getHomeTeam(context, teams) {
@@ -402,8 +449,9 @@ function getHomeTeam(context, teams) {
 
 function getHomePerformance(context, team) {
   const side = getPerformanceSide(context, team);
-  const previousRound = context.type === "final" ? 3 : context.roundIndex - 1;
-  const beforeRound = context.type === "final" ? sideMatchCounts.length : context.roundIndex;
+  const isCenterMatch = context.type === "final" || context.type === "bronze";
+  const previousRound = isCenterMatch ? 3 : context.roundIndex - 1;
+  const beforeRound = isCenterMatch ? sideMatchCounts.length : context.roundIndex;
 
   if (!side || previousRound < 0) {
     return { previousMargin: 0, totalBalance: 0 };
@@ -429,7 +477,7 @@ function getTeamMarginInRound(side, roundIndex, team) {
     if (slot === -1) continue;
 
     const score = state.sides[side].scores[roundIndex][matchIndex];
-    return Math.abs(score[slot] - score[slot === 0 ? 1 : 0]);
+    return score[slot] - score[slot === 0 ? 1 : 0];
   }
 
   return 0;
@@ -464,16 +512,19 @@ function getSideMatchTeams(side, roundIndex, matchIndex) {
 
 function getWinner(context) {
   if (context.type === "final") return state.final.winner;
+  if (context.type === "bronze") return state.bronze.winner;
   return state.sides[context.side].winners[context.roundIndex][context.matchIndex];
 }
 
 function getScore(context) {
   if (context.type === "final") return state.final.score;
+  if (context.type === "bronze") return state.bronze.score;
   return state.sides[context.side].scores[context.roundIndex][context.matchIndex];
 }
 
 function getBestOf(context) {
   if (context.type === "final") return 5;
+  if (context.type === "bronze") return 3;
   return sideBestOf[context.roundIndex];
 }
 
@@ -574,6 +625,10 @@ function setWinner(context, winner) {
     state.final.winner = winner;
     return;
   }
+  if (context.type === "bronze") {
+    state.bronze.winner = winner;
+    return;
+  }
 
   state.sides[context.side].winners[context.roundIndex][context.matchIndex] = winner;
   clearDownstream(context);
@@ -591,6 +646,8 @@ function clearDownstream(context) {
 
   state.final.winner = null;
   state.final.score = [0, 0];
+  state.bronze.winner = null;
+  state.bronze.score = [0, 0];
 }
 
 function teamMarkup(team, isWinner, isHome) {
