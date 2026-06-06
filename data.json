@@ -42,7 +42,7 @@
       "winners": [
         ["Inglaterra", "Chile", "França", "Colômbia", "Sérvia", "Japão", "Suécia", "Bélgica"],
         ["Chile", "França", "Sérvia", "Suécia"],
-        [null, null],
+        ["França", "Suécia"],
         [null]
       ],
       "scores": [
@@ -63,8 +63,8 @@
           [1, 0]
         ],
         [
-          [0, 0],
-          [0, 0]
+          [0, 2],
+          [0, 2]
         ],
         [[0, 0]]
       ]
@@ -73,7 +73,7 @@
       "winners": [
         ["Alemanha", "Brasil", "Portugal", "Polônia", "Coreia do Sul", "Austrália", "Espanha", "Egito"],
         ["Brasil", "Polônia", "Austrália", "Espanha"],
-        [null, null],
+        ["Brasil", "Austrália"],
         [null]
       ],
       "scores": [
@@ -94,8 +94,8 @@
           [1, 0]
         ],
         [
-          [0, 0],
-          [0, 0]
+          [2, 0],
+          [2, 1]
         ],
         [[0, 0]]
       ]
