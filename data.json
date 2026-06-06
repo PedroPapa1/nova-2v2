@@ -41,14 +41,14 @@
     "left": {
       "winners": [
         [
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
+          "Inglaterra",
+          "Chile",
+          "França",
+          "Colômbia",
+          "Sérvia",
+          "Japão",
+          "Suécia",
+          "Bélgica"
         ],
         [
           null,
@@ -67,35 +67,35 @@
       "scores": [
         [
           [
-            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
             0
           ],
           [
             0,
-            0
+            1
           ],
           [
             0,
-            0
+            1
           ],
           [
             0,
-            0
+            1
           ],
           [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
+            1,
             0
           ]
         ],
@@ -138,14 +138,14 @@
     "right": {
       "winners": [
         [
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
+          "Alemanha",
+          "Brasil",
+          "Portugal",
+          "Polônia",
+          "Coreia do Sul",
+          "Austrália",
+          "Espanha",
+          "Egito"
         ],
         [
           null,
@@ -164,36 +164,36 @@
       "scores": [
         [
           [
-            0,
+            1,
+            0
+          ],
+          [
+            1,
             0
           ],
           [
             0,
+            1
+          ],
+          [
+            1,
             0
           ],
           [
             0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
             0
           ],
           [
             0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
+            1
           ]
         ],
         [
