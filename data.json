@@ -42,7 +42,7 @@
       "winners": [
         ["Inglaterra", "Chile", "França", "Colômbia", "Sérvia", "Japão", "Suécia", "Bélgica"],
         ["Chile", "França", "Sérvia", "Suécia"],
-        ["França", "Espanha"],
+        ["França", "Suécia"],
         [null]
       ],
       "scores": [
@@ -109,6 +109,7 @@
   "bronze": {
     "bestOf": 5,
     "score": [0, 0],
-    "winner": null
+    "winner": null,
+    "overrideTeams": ["Espanha", null]
   }
 }

@@ -1,4 +1,4 @@
-const STORAGE_KEY = "nova-2v2-admin-v3";
+const STORAGE_KEY = "nova-2v2-admin-v4";
 const isAdmin = document.body.dataset.mode === "admin";
 
 const initialTeams = [
@@ -147,9 +147,15 @@ function upgradeState(value) {
       bestOf: 5,
       score: [0, 0],
       winner: null,
+      overrideTeams: [null, null],
     };
   }
-  if (value?.bronze) value.bronze.bestOf = 5;
+  if (value?.bronze) {
+    value.bronze.bestOf = 5;
+    if (!Array.isArray(value.bronze.overrideTeams)) {
+      value.bronze.overrideTeams = [null, null];
+    }
+  }
   return value;
 }
 
@@ -161,6 +167,7 @@ function normalizeState(value) {
   });
   value.final.winner = normalizeTeamName(value.final.winner);
   value.bronze.winner = normalizeTeamName(value.bronze.winner);
+  value.bronze.overrideTeams = value.bronze.overrideTeams.map(normalizeTeamName);
   return value;
 }
 
@@ -188,6 +195,7 @@ function createState(teams) {
       bestOf: 5,
       score: [0, 0],
       winner: null,
+      overrideTeams: [null, null],
     },
   };
 }
@@ -226,6 +234,9 @@ function validateState(value) {
   }
   if (!Array.isArray(value.bronze.score) || value.bronze.score.length !== 2) {
     throw new Error("Invalid bronze score");
+  }
+  if (!Array.isArray(value.bronze.overrideTeams) || value.bronze.overrideTeams.length !== 2) {
+    throw new Error("Invalid bronze overrides");
   }
 }
 
@@ -411,7 +422,8 @@ function getMatchTeams(context) {
     return [state.sides.left.winners[3][0], state.sides.right.winners[3][0]];
   }
   if (context.type === "bronze") {
-    return [getSemifinalLoser("left"), getSemifinalLoser("right")];
+    const automaticTeams = [getSemifinalLoser("left"), getSemifinalLoser("right")];
+    return automaticTeams.map((team, slot) => state.bronze.overrideTeams[slot] || team);
   }
 
   if (context.roundIndex === 0) {
