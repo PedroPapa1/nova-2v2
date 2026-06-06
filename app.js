@@ -1,4 +1,5 @@
 const STORAGE_KEY = "nova-2v2-admin-v4";
+const LEGACY_STORAGE_KEYS = ["nova-2v2-admin-v3"];
 const isAdmin = document.body.dataset.mode === "admin";
 
 const initialTeams = [
@@ -132,13 +133,45 @@ async function loadState() {
 }
 
 function readSavedState() {
+  const candidates = [STORAGE_KEY, ...LEGACY_STORAGE_KEYS]
+    .map(readStoredCandidate)
+    .filter(Boolean)
+    .sort((first, second) => getStateProgress(second) - getStateProgress(first));
+
+  const saved = candidates[0];
+  if (!saved) return null;
+
+  applyTournamentOverrides(saved);
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
+  return saved;
+}
+
+function readStoredCandidate(key) {
   try {
-    const saved = upgradeState(JSON.parse(localStorage.getItem(STORAGE_KEY)));
+    const raw = localStorage.getItem(key);
+    if (!raw) return null;
+
+    const saved = normalizeState(upgradeState(JSON.parse(raw)));
     validateState(saved);
-    return normalizeState(saved);
+    return saved;
   } catch (error) {
     return null;
   }
+}
+
+function getStateProgress(value) {
+  const sideWinners = sides.reduce(
+    (total, side) => total + value.sides[side].winners.flat().filter(Boolean).length,
+    0,
+  );
+  const centerWinners = Number(Boolean(value.final.winner)) + Number(Boolean(value.bronze.winner));
+  const scoredGames = sides.reduce(
+    (total, side) =>
+      total +
+      value.sides[side].scores.flat().filter((score) => score.some((points) => points > 0)).length,
+    0,
+  );
+  return sideWinners * 10 + centerWinners * 10 + scoredGames;
 }
 
 function upgradeState(value) {
@@ -157,6 +190,15 @@ function upgradeState(value) {
     }
   }
   return value;
+}
+
+function applyTournamentOverrides(value) {
+  const leftQuarterFinalists = value.sides.left.winners[2];
+  const hasWoScenario = leftQuarterFinalists.includes("França") && leftQuarterFinalists.includes("Suécia");
+
+  if (hasWoScenario) {
+    value.bronze.overrideTeams[0] = "Espanha";
+  }
 }
 
 function normalizeState(value) {
