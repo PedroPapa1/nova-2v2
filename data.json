@@ -107,7 +107,7 @@
     "winner": null
   },
   "bronze": {
-    "bestOf": 5,
+    "bestOf": 3,
     "score": [0, 0],
     "winner": null,
     "overrideTeams": ["Espanha", null]

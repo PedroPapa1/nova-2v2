@@ -177,14 +177,14 @@ function getStateProgress(value) {
 function upgradeState(value) {
   if (value && value.version === 3 && !value.bronze) {
     value.bronze = {
-      bestOf: 5,
+      bestOf: 3,
       score: [0, 0],
       winner: null,
       overrideTeams: [null, null],
     };
   }
   if (value?.bronze) {
-    value.bronze.bestOf = 5;
+    value.bronze.bestOf = 3;
     if (!Array.isArray(value.bronze.overrideTeams)) {
       value.bronze.overrideTeams = [null, null];
     }
@@ -234,7 +234,7 @@ function createState(teams) {
       winner: null,
     },
     bronze: {
-      bestOf: 5,
+      bestOf: 3,
       score: [0, 0],
       winner: null,
       overrideTeams: [null, null],
@@ -330,7 +330,7 @@ function createFinal() {
 
   finalLane.append(
     createCenterMatch("Grande Final - MD5", { type: "final" }, "final-header"),
-    createCenterMatch("3º e 4º Lugar - MD5", { type: "bronze" }, "placement-header"),
+    createCenterMatch("3º e 4º Lugar - MD3", { type: "bronze" }, "placement-header"),
   );
   return finalLane;
 }
@@ -579,7 +579,7 @@ function getScore(context) {
 
 function getBestOf(context) {
   if (context.type === "final") return 5;
-  if (context.type === "bronze") return 5;
+  if (context.type === "bronze") return 3;
   return sideBestOf[context.roundIndex];
 }
 

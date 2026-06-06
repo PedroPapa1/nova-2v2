@@ -13,6 +13,7 @@ Chaveamento publico do campeonato Nova 2v2.
 - Oitavas de Final: 16 duplas, MD1
 - Quartas de Final: 8 duplas, MD3
 - Semifinais: 4 duplas, MD3
+- Disputa de 3º e 4º lugar: 2 duplas, MD3
 - Grande Final: 2 duplas, MD5
 
 ## Atualizar resultados
