@@ -1,12 +1,10 @@
-# Nova x Volt 2v2
+# Nova x Volt - 2v2
 
-Chaveamento público do campeonato Nova x Volt 2v2.
+Chaveamento público do campeonato Nova x Volt - 2v2.
 
 - `index.html`: pagina publica somente leitura.
 - `admin.html`: pagina local para editar placares e baixar o `data.json`.
 - `data.json`: estado publicado do chaveamento.
-- `logo.png`: logo original da Nova usada no topo do site.
-- `volt-icon.gif`: logo original da Volt Empire usada no topo do site.
 
 ## Regras
 

@@ -197,7 +197,7 @@ function normalizeTeamName(team) {
 function createState(teams) {
   return {
     version: 4,
-    title: "Nova x Volt 2v2",
+    title: "Nova x Volt - 2v2",
     leftTeams: teams.slice(0, 16),
     rightTeams: teams.slice(16),
     sides: {
