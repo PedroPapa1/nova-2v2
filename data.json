@@ -41,14 +41,14 @@
     "left": {
       "winners": [
         [
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
+          "Manchester United",
+          "Olympique de Marseille",
+          "Bayer Leverkusen",
+          "PSV Eindhoven",
+          "Tottenham Hotspur",
+          "Lazio",
+          "Porto",
+          "Paris Saint-Germain"
         ],
         [
           null,
@@ -68,34 +68,34 @@
         [
           [
             0,
+            1
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            0
+          ],
+          [
+            1,
             0
           ],
           [
             0,
-            0
+            1
           ],
           [
             0,
-            0
+            1
           ],
           [
             0,
-            0
+            1
           ],
           [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
+            1,
             0
           ]
         ],
@@ -138,14 +138,14 @@
     "right": {
       "winners": [
         [
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null,
-          null
+          "Aston Villa",
+          "AC Milan",
+          "Arsenal",
+          "Sevilla",
+          "Chelsea",
+          "Newcastle United",
+          "Galatasaray",
+          "Barcelona"
         ],
         [
           null,
@@ -164,35 +164,35 @@
       "scores": [
         [
           [
-            0,
+            1,
             0
           ],
           [
             0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            1,
             0
           ],
           [
             0,
-            0
+            1
           ],
           [
             0,
-            0
+            1
           ],
           [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
-            0
-          ],
-          [
-            0,
+            1,
             0
           ]
         ],
