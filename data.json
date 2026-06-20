@@ -1,103 +1,69 @@
 {
-  "version": 3,
-  "title": "Nova 2v2",
+  "version": 4,
+  "title": "Nova x Volt 2v2",
   "leftTeams": [
-    "Inglaterra",
-    "Itália",
-    "Chile",
-    "Uruguai",
-    "França",
-    "Holanda",
-    "Colômbia",
-    "Marrocos",
-    "México",
-    "Sérvia",
-    "Turquia",
-    "Japão",
-    "Canadá",
-    "Suécia",
-    "Bélgica",
-    "Argentina"
+    "Real Madrid",
+    "Barcelona",
+    "Manchester United",
+    "Liverpool",
+    "Bayern Munich",
+    "AC Milan",
+    "Inter Milan",
+    "Juventus",
+    "Manchester City",
+    "Paris Saint-Germain",
+    "Arsenal",
+    "Chelsea",
+    "Borussia Dortmund",
+    "Atlético Madrid",
+    "Ajax",
+    "Benfica"
   ],
   "rightTeams": [
-    "Alemanha",
-    "Dinamarca",
-    "Brasil",
-    "Camarões",
-    "Croácia",
-    "Portugal",
-    "Polônia",
-    "Noruega",
-    "Nigéria",
-    "Coreia do Sul",
-    "Austrália",
-    "República Tcheca",
-    "Espanha",
-    "Suíça",
-    "Estados Unidos",
-    "Egito"
+    "Porto",
+    "Napoli",
+    "Tottenham Hotspur",
+    "Sevilla",
+    "Valencia",
+    "Olympique de Marseille",
+    "Celtic",
+    "Newcastle United",
+    "Aston Villa",
+    "Sporting CP",
+    "Galatasaray",
+    "Fenerbahçe",
+    "PSV Eindhoven",
+    "AS Roma",
+    "Lazio",
+    "Bayer Leverkusen"
   ],
   "sides": {
     "left": {
       "winners": [
-        ["Inglaterra", "Chile", "França", "Colômbia", "Sérvia", "Japão", "Suécia", "Bélgica"],
-        ["Chile", "França", "Sérvia", "Suécia"],
-        ["França", "Suécia"],
-        ["França"]
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null],
+        [null, null],
+        [null]
       ],
       "scores": [
-        [
-          [1, 0],
-          [1, 0],
-          [1, 0],
-          [1, 0],
-          [0, 1],
-          [0, 1],
-          [0, 1],
-          [1, 0]
-        ],
-        [
-          [0, 1],
-          [1, 0],
-          [1, 0],
-          [1, 0]
-        ],
-        [
-          [0, 2],
-          [0, 2]
-        ],
-        [[2, 0]]
+        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+        [[0, 0], [0, 0], [0, 0], [0, 0]],
+        [[0, 0], [0, 0]],
+        [[0, 0]]
       ]
     },
     "right": {
       "winners": [
-        ["Alemanha", "Brasil", "Portugal", "Polônia", "Coreia do Sul", "Austrália", "Espanha", "Egito"],
-        ["Brasil", "Polônia", "Austrália", "Espanha"],
-        ["Brasil", "Austrália"],
-        ["Brasil"]
+        [null, null, null, null, null, null, null, null],
+        [null, null, null, null],
+        [null, null],
+        [null]
       ],
       "scores": [
-        [
-          [1, 0],
-          [1, 0],
-          [0, 1],
-          [1, 0],
-          [0, 1],
-          [1, 0],
-          [1, 0],
-          [0, 1]
-        ],
-        [
-          [0, 1],
-          [0, 1],
-          [0, 1],
-          [1, 0]
-        ],
-        [
-          [2, 0],
-          [2, 1]
-        ],
-        [[2, 0]]
+        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
+        [[0, 0], [0, 0], [0, 0], [0, 0]],
+        [[0, 0], [0, 0]],
+        [[0, 0]]
       ]
     }
   },
@@ -107,9 +73,9 @@
     "winner": null
   },
   "bronze": {
-    "bestOf": 5,
+    "bestOf": 3,
     "score": [0, 0],
     "winner": null,
-    "overrideTeams": ["Espanha", null]
+    "overrideTeams": [null, null]
   }
 }

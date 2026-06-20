@@ -1,64 +1,47 @@
-const STORAGE_KEY = "nova-2v2-admin-v4";
-const LEGACY_STORAGE_KEYS = ["nova-2v2-admin-v3"];
+const STORAGE_KEY = "nova-volt-2v2-admin-v1";
+const LEGACY_STORAGE_KEYS = [];
 const isAdmin = document.body.dataset.mode === "admin";
 
 const initialTeams = [
-  "Brasil",
-  "Argentina",
-  "Alemanha",
-  "Itália",
-  "Inglaterra",
-  "França",
-  "Espanha",
-  "Portugal",
-  "Holanda",
-  "Uruguai",
-  "México",
-  "Bélgica",
-  "Croácia",
-  "Marrocos",
-  "Estados Unidos",
-  "Japão",
-  "Colômbia",
-  "Chile",
-  "Polônia",
-  "Dinamarca",
-  "Suíça",
-  "Sérvia",
-  "Suécia",
-  "Noruega",
-  "Turquia",
-  "Coreia do Sul",
-  "Camarões",
-  "Nigéria",
-  "Egito",
-  "Canadá",
-  "Austrália",
-  "República Tcheca",
+  "Real Madrid",
+  "Barcelona",
+  "Manchester United",
+  "Liverpool",
+  "Bayern Munich",
+  "AC Milan",
+  "Inter Milan",
+  "Juventus",
+  "Manchester City",
+  "Paris Saint-Germain",
+  "Arsenal",
+  "Chelsea",
+  "Borussia Dortmund",
+  "Atlético Madrid",
+  "Ajax",
+  "Benfica",
+  "Porto",
+  "Napoli",
+  "Tottenham Hotspur",
+  "Sevilla",
+  "Valencia",
+  "Olympique de Marseille",
+  "Celtic",
+  "Newcastle United",
+  "Aston Villa",
+  "Sporting CP",
+  "Galatasaray",
+  "Fenerbahçe",
+  "PSV Eindhoven",
+  "AS Roma",
+  "Lazio",
+  "Bayer Leverkusen",
 ];
 
 const sideRoundNames = ["Primeira Fase", "Oitavas", "Quartas", "Semifinais"];
 const sideMatchCounts = [8, 4, 2, 1];
 const sideBestOf = [1, 1, 3, 3];
 const sides = ["left", "right"];
-const accentMap = {
-  Italia: "Itália",
-  Franca: "França",
-  Mexico: "México",
-  Belgica: "Bélgica",
-  Croacia: "Croácia",
-  Japao: "Japão",
-  Colombia: "Colômbia",
-  Polonia: "Polônia",
-  Suica: "Suíça",
-  Servia: "Sérvia",
-  Suecia: "Suécia",
-  Camaroes: "Camarões",
-  Nigeria: "Nigéria",
-  Canada: "Canadá",
-  Australia: "Austrália",
-  "Republica Tcheca": "República Tcheca",
-};
+const accentMap = {};
 
 let state;
 
@@ -79,7 +62,7 @@ function bindAdminActions() {
   if (!isAdmin) return;
 
   document.querySelector("#resetButton").addEventListener("click", () => {
-    const confirmed = window.confirm("Resetar todos os placares e vencedores do Nova 2v2?");
+    const confirmed = window.confirm("Resetar todos os placares e vencedores do Nova x Volt 2v2?");
     if (!confirmed) return;
     state = createState(initialTeams);
     saveState();
@@ -87,7 +70,7 @@ function bindAdminActions() {
   });
 
   document.querySelector("#shuffleButton").addEventListener("click", () => {
-    const confirmed = window.confirm("Embaralhar as seleções e zerar o chaveamento?");
+    const confirmed = window.confirm("Embaralhar os times e zerar o chaveamento?");
     if (!confirmed) return;
     state = createState(shuffle([...initialTeams]));
     saveState();
@@ -192,14 +175,7 @@ function upgradeState(value) {
   return value;
 }
 
-function applyTournamentOverrides(value) {
-  const leftQuarterFinalists = value.sides.left.winners[2];
-  const hasWoScenario = leftQuarterFinalists.includes("França") && leftQuarterFinalists.includes("Suécia");
-
-  if (hasWoScenario) {
-    value.bronze.overrideTeams[0] = "Espanha";
-  }
-}
+function applyTournamentOverrides() {}
 
 function normalizeState(value) {
   value.leftTeams = value.leftTeams.map(normalizeTeamName);
@@ -220,8 +196,8 @@ function normalizeTeamName(team) {
 
 function createState(teams) {
   return {
-    version: 3,
-    title: "Nova 2v2",
+    version: 4,
+    title: "Nova x Volt 2v2",
     leftTeams: teams.slice(0, 16),
     rightTeams: teams.slice(16),
     sides: {
@@ -250,7 +226,7 @@ function createSideState() {
 }
 
 function validateState(value) {
-  if (!value || value.version !== 3) throw new Error("Invalid version");
+  if (!value || value.version !== 4) throw new Error("Invalid version");
   if (!Array.isArray(value.leftTeams) || value.leftTeams.length !== 16) throw new Error("Invalid left");
   if (!Array.isArray(value.rightTeams) || value.rightTeams.length !== 16) throw new Error("Invalid right");
   if (!value.sides || !value.final || !value.bronze) throw new Error("Invalid bracket");
@@ -592,6 +568,7 @@ function createTeamButton(context, team, winner, homeTeam) {
   button.className = "team";
   button.type = "button";
   button.disabled = !isAdmin || !team;
+  button.title = team || "Aguardando vencedor";
   button.innerHTML = team ? teamMarkup(team, winner === team, homeTeam === team) : emptyMarkup();
   button.classList.toggle("winner", Boolean(team && winner === team));
   button.classList.toggle("loser", Boolean(team && winner && winner !== team));
