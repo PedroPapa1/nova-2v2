@@ -2,80 +2,255 @@
   "version": 4,
   "title": "Nova x Volt - 2v2",
   "leftTeams": [
-    "Real Madrid",
-    "Barcelona",
+    "Benfica",
     "Manchester United",
-    "Liverpool",
-    "Bayern Munich",
-    "AC Milan",
-    "Inter Milan",
+    "Olympique de Marseille",
+    "Napoli",
+    "Bayer Leverkusen",
+    "Celtic",
+    "PSV Eindhoven",
+    "Real Madrid",
+    "Valencia",
+    "Tottenham Hotspur",
     "Juventus",
-    "Manchester City",
+    "Lazio",
+    "Fenerbahçe",
+    "Porto",
     "Paris Saint-Germain",
-    "Arsenal",
-    "Chelsea",
-    "Borussia Dortmund",
-    "Atlético Madrid",
-    "Ajax",
-    "Benfica"
+    "Borussia Dortmund"
   ],
   "rightTeams": [
-    "Porto",
-    "Napoli",
-    "Tottenham Hotspur",
-    "Sevilla",
-    "Valencia",
-    "Olympique de Marseille",
-    "Celtic",
-    "Newcastle United",
     "Aston Villa",
+    "Atlético Madrid",
+    "Manchester City",
+    "AC Milan",
+    "Ajax",
+    "Arsenal",
     "Sporting CP",
-    "Galatasaray",
-    "Fenerbahçe",
-    "PSV Eindhoven",
+    "Sevilla",
+    "Chelsea",
     "AS Roma",
-    "Lazio",
-    "Bayer Leverkusen"
+    "Liverpool",
+    "Newcastle United",
+    "Bayern Munich",
+    "Galatasaray",
+    "Barcelona",
+    "Inter Milan"
   ],
   "sides": {
     "left": {
       "winners": [
-        [null, null, null, null, null, null, null, null],
-        [null, null, null, null],
-        [null, null],
-        [null]
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null
+        ]
       ],
       "scores": [
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0]],
-        [[0, 0]]
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ]
+        ]
       ]
     },
     "right": {
       "winners": [
-        [null, null, null, null, null, null, null, null],
-        [null, null, null, null],
-        [null, null],
-        [null]
+        [
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null,
+          null,
+          null
+        ],
+        [
+          null,
+          null
+        ],
+        [
+          null
+        ]
       ],
       "scores": [
-        [[0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0], [0, 0], [0, 0]],
-        [[0, 0], [0, 0]],
-        [[0, 0]]
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            0
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ]
+        ]
       ]
     }
   },
   "final": {
     "bestOf": 5,
-    "score": [0, 0],
+    "score": [
+      0,
+      0
+    ],
     "winner": null
   },
   "bronze": {
     "bestOf": 3,
-    "score": [0, 0],
+    "score": [
+      0,
+      0
+    ],
     "winner": null,
-    "overrideTeams": [null, null]
+    "overrideTeams": [
+      null,
+      null
+    ]
   }
 }
