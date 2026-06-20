@@ -51,10 +51,10 @@
           "Paris Saint-Germain"
         ],
         [
-          null,
-          null,
-          null,
-          null
+          "Olympique de Marseille",
+          "Bayer Leverkusen",
+          "Lazio",
+          "Porto"
         ],
         [
           null,
@@ -102,18 +102,18 @@
         [
           [
             0,
+            1
+          ],
+          [
+            1,
             0
           ],
           [
             0,
-            0
+            1
           ],
           [
-            0,
-            0
-          ],
-          [
-            0,
+            1,
             0
           ]
         ],
@@ -145,13 +145,13 @@
           "Chelsea",
           "Newcastle United",
           "Galatasaray",
-          "Barcelona"
+          "Inter Milan"
         ],
         [
-          null,
-          null,
-          null,
-          null
+          "Aston Villa",
+          "Arsenal",
+          "Newcastle United",
+          "Inter Milan"
         ],
         [
           null,
@@ -192,26 +192,26 @@
             1
           ],
           [
-            1,
-            0
+            0,
+            1
           ]
         ],
         [
           [
-            0,
+            1,
+            0
+          ],
+          [
+            1,
             0
           ],
           [
             0,
-            0
+            1
           ],
           [
             0,
-            0
-          ],
-          [
-            0,
-            0
+            1
           ]
         ],
         [
